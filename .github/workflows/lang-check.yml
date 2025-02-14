@@ -36,9 +36,13 @@ jobs:
           
           # Check if output contains ❌ symbol
           if echo "$output" | grep -q "❌"; then
+            # Clean up temporary file before exit
+            rm -f ./lang-check/commit-*.txt
             echo "Check failed, PR cannot be merged"
             exit 1  # Non-zero exit code will fail the Action
           else
+            # Clean up temporary file before exit
+            rm -f ./lang-check/commit-*.txt
             echo "Check passed"
             exit 0  # Zero exit code indicates Action success
           fi
